@@ -52,11 +52,13 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("release") {
-            from(components.findByName("release"))
+        register<MavenPublication>("release") {
+            afterEvaluate {
+                from(components.findByName("release"))
+            }
             groupId = "com.github.AndroidWithRossyn"
             artifactId = "esaytoast"
-            version = "1.0.2"
+            version = "1.0.3"
 
             pom {
                 name.set("EasyToast")
