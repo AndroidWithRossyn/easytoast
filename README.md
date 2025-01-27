@@ -1,13 +1,17 @@
 # EasyToast
 
-EasyToast is a lightweight Kotlin/Java class designed to simplify the use of Toast messages in Android applications. It was initially created for personal use but is now shared publicly to help others.
+EasyToast is a lightweight Kotlin/Java class designed to simplify the use of Toast messages in
+Android applications. It was initially created for personal use but is now shared publicly to help
+others.
 
 ## Features
+
 - Simple and easy-to-use.
 - No external dependencies required.
 - Can be used directly by copying the class into your project.
 
 ## Usage
+
 1. **Include the class in your project:**
     - Copy and paste the `EasyToast.kt` file into your Android project.
 
@@ -17,12 +21,13 @@ EasyToast is a lightweight Kotlin/Java class designed to simplify the use of Toa
    ```
 
 ### Find this Repository useful? ❤️
+
 Support it by joining stargazers for this repository. ⭐
 
 Also, [follow me on GitHub](https://github.com/AndroidWithRossyn/) for my next creations! 🤩
 
-
 ### License
+
 ```
 Copyright 2024 Rossyn
 

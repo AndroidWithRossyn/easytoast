@@ -22,5 +22,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Easy-Toast"
-//include(":esaytoast")
-include(":easytoast-kts")
+include(":esaytoast")
