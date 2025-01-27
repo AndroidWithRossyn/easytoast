@@ -58,7 +58,7 @@ publishing {
             }
             groupId = "com.github.AndroidWithRossyn"
             artifactId = "esaytoast"
-            version = "1.0.3"
+            version = "1.0.4"
 
             pom {
                 name.set("EasyToast")

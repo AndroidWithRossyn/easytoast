@@ -46,5 +46,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-//    implementation("com.github.AndroidWithRossyn:easytoast:1.0.2")
+    implementation("com.github.AndroidWithRossyn:easytoast:1.0.3")
 }

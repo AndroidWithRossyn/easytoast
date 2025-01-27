@@ -19,47 +19,67 @@ package com.rossyn.easytoast.kts
 
 import android.app.Dialog
 import android.content.Context
+import android.os.Build
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import java.lang.ref.WeakReference
 
+/**
+ * Utility object for showing customizable Toast messages.
+ * Note: `setGravity()` is deprecated on Android 11+ (API 30).
+ */
 object ToastUtils {
-    private var activeToast: Toast? = null
+
+    private var activeToast: WeakReference<Toast>? = null
 
     /**
-     * Displays a custom toast message with the specified duration and gravity.
+     * Displays a Toast message with customizable options.
      *
-     * @param message The message to be displayed in the toast.
-     * @param duration The duration for which the toast should be displayed.
-     *                 It can be either [Toast.LENGTH_SHORT] or [Toast.LENGTH_LONG].
-     *                 Default value is [Toast.LENGTH_SHORT].
-     * @param gravity The gravity for the toast's position.
-     *                It can be any of the constants defined in [Gravity].
-     *                Default value is [Gravity.BOTTOM].
-     *
+     * @param message The message to display in the Toast.
+     * @param duration The duration for which the Toast should be displayed. Default is Toast.LENGTH_SHORT.
+     * @param gravity The gravity for the Toast position. Default is Gravity.BOTTOM.
+     * @param xOffset The X offset for the Toast position. Default is 0.
+     * @param yOffset The Y offset for the Toast position. Default is 0.
      */
     private fun Context.displayToast(
-        message: String, duration: Int = Toast.LENGTH_SHORT, gravity: Int = Gravity.BOTTOM
+        message: String,
+        duration: Int = Toast.LENGTH_SHORT,
+        gravity: Int = Gravity.BOTTOM,
+        xOffset: Int = 0,
+        yOffset: Int = 0
     ) {
         cancelActiveToast()
-        activeToast = Toast.makeText(this, message, duration).apply {
-            setGravity(gravity, 0, 0)
+        val toast = Toast.makeText(this, message, duration).apply {
+            /* Changes in Android 11 (API 30) and newer versions:
+              The ability to customize the position of Toast has been restricted from Android 11.
+              setGravity() method no longer works
+              Toast will now appear only at the bottom
+              */
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                setGravity(gravity, xOffset, yOffset)
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                addCallback(object : Toast.Callback() {
+                    override fun onToastHidden() {
+                        super.onToastHidden()
+                        activeToast = null
+                    }
+                })
+            }
             show()
         }
+        activeToast = WeakReference(toast)
     }
 
-
     /**
-     * Cancels the currently displayed toast, if any.
-     *
-     * This function checks if there is an active toast and, if so, cancels it by calling its [Toast.cancel] method.
-     * After cancelling the active toast, it sets the [activeToast] variable to null to indicate that there is no active toast.
-     *
+     * Cancels the currently active Toast, if any.
      */
     fun cancelActiveToast() {
-        activeToast?.cancel()
+        activeToast?.get()?.cancel()
         activeToast = null
     }
 
@@ -247,4 +267,3 @@ object ToastUtils {
     fun View.showToastCenterLong(@StringRes messageRes: Int) =
         context.showToastCenterLong(messageRes)
 }
-

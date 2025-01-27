@@ -1,8 +1,30 @@
 # EasyToast
 
+[![](https://jitpack.io/v/AndroidWithRossyn/easytoast.svg)](https://jitpack.io/#AndroidWithRossyn/easytoast)
+[![Medium](https://img.shields.io/badge/Medium-12100E?logo=medium&logoColor=white)](https://rohitrajkhorwal.medium.com/android-toast-utilities-a-better-way-to-handle-toast-messages-rohitrajkhorwal-e16f555238ac)
+
+
 EasyToast is a lightweight Kotlin/Java class designed to simplify the use of Toast messages in
 Android applications. It was initially created for personal use but is now shared publicly to help
 others.
+
+###  Add JitPack Repository in `settings.gradle.kts`:
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io") // Add JitPack
+    }
+}
+```
+
+###  Add the Dependency in `build.gradle.kts`:
+```kotlin
+dependencies {
+    implementation("com.github.AndroidWithRossyn:easytoast:VERSION")
+}
+```
 
 ## Features
 
@@ -13,7 +35,7 @@ others.
 ## Usage
 
 1. **Include the class in your project:**
-    - Copy and paste the `EasyToast.kt` file into your Android project.
+   - Copy and paste the `EasyToast.kt` file into your Android project.
 
 2. **Example:**
    ```kotlin
