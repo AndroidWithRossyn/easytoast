@@ -1,4 +1,4 @@
-## `27 JAN 2025 - [1.0.0]`
+## `27 JAN 2025 - [1.0.1]`
 
 - publishing the library to jitpack.io
 

@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    id("com.android.library")
+    kotlin("android")
     id("maven-publish")
 }
 
@@ -33,7 +33,7 @@ android {
         jvmTarget = "11"
     }
     publishing {
-        singleVariant("release"){
+        singleVariant("release") {
             withSourcesJar()
             withJavadocJar()
         }
@@ -58,7 +58,7 @@ publishing {
             }
             groupId = "com.github.AndroidWithRossyn"
             artifactId = "esaytoast"
-            version = "1.0.0"
+            version = "1.0.1"
 
             pom {
                 name.set("EasyToast")
